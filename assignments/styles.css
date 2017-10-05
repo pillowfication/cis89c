@@ -21,12 +21,11 @@ header {
   top: 0;
   left: 0;
   right: 0;
-  background-color: rgba(255, 255, 255, .8);
+  background-color: rgba(0, 0, 0, .8);
 }
 
 nav {
-  height: 40px;
-  padding: 10px;
+  height: 50px;
 }
 
 nav > ul {
@@ -38,7 +37,7 @@ nav > ul {
 }
 nav > ul li {
   display: inline-block;
-  height: 40px;
+  height: 50px;
 }
 nav > ul li:first-child {
   position: absolute;
@@ -46,24 +45,22 @@ nav > ul li:first-child {
   top: 0;
 }
 nav > ul li > a {
+  box-sizing: border-box;
   display: block;
-  padding: 0 2rem;
+  padding: 5px 2rem;
   height: 100%;
   line-height: 40px;
-  color: black;
+  color: white;
   text-decoration: none;
   transition: background-color .2s linear, color .2s linear;
 }
 nav > ul li > a:hover {
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: black;
 }
 
-#logo > a {
-  background: none;
-}
-#logo img {
-  height: 100%;
+#logo {
+  font-weight: bold;
 }
 
 /* MAIN */
@@ -88,7 +85,37 @@ nav > ul li > a:hover {
 }
 
 #catch {
-  background-color: #ddd;
+  background-color: #000;
   padding: 4rem 0;
-  color: #000;
+  color: #fff;
+  text-align: center;
+}
+
+#catch #catch-head {
+  text-align: left;
+}
+#catch #catch-head h1 {
+  float: left;
+}
+#catch #catch-head p {
+  float: right;
+  margin-top: 2rem;
+  margin-right: 4rem;
+}
+#catch #catch-head hr {
+  clear: both;
+}
+
+#catch .catch-column {
+  box-sizing: border-box;
+  padding: 4rem 3rem;
+  display: inline-block;
+  width: 33%;
+  min-width: 300px;
+  font-size: 1.5rem;
+  vertical-align: text-top;
+}
+#catch .catch-column i {
+  margin-bottom: 1rem;
+  font-size: 5rem;
 }
