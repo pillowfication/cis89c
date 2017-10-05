@@ -21,7 +21,7 @@ header {
   top: 0;
   left: 0;
   right: 0;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, .8);
 }
 
 nav {
@@ -30,12 +30,40 @@ nav {
 }
 
 nav > ul {
+  position: relative;
   list-style-type: none;
   margin: 0;
+  height: 100%;
+  text-align: right;
+}
+nav > ul li {
+  display: inline-block;
+  height: 40px;
+}
+nav > ul li:first-child {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+nav > ul li > a {
+  display: block;
+  padding: 0 2rem;
+  height: 100%;
+  line-height: 40px;
+  color: black;
+  text-decoration: none;
+  transition: background-color .2s linear, color .2s linear;
+}
+nav > ul li > a:hover {
+  background-color: black;
+  color: white;
 }
 
-#logo {
-  height: 40px
+#logo > a {
+  background: none;
+}
+#logo img {
+  height: 100%;
 }
 
 /* MAIN */
@@ -44,6 +72,9 @@ nav > ul {
   width: 100vw;
   height: 100vh;
   text-align: center;
+  background-image: url('assets/img/background.jpg');
+  background-size: cover;
+  background-position: center center;
 }
 
 #pf {
@@ -59,4 +90,5 @@ nav > ul {
 #catch {
   background-color: #ddd;
   padding: 4rem 0;
+  color: #000;
 }
