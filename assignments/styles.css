@@ -5,6 +5,7 @@ html, body {
   border: 0;
   padding: 0;
   font-family: "Open Sans", sans-serif;
+  background-color: #000;
 }
 
 .row {
@@ -56,7 +57,7 @@ nav > ul li > a {
   transition: background-color .2s linear, color .2s linear;
 }
 nav > ul li > a:hover {
-  background-color: white;
+  background-color: #eee;
   color: black;
 }
 
@@ -108,8 +109,7 @@ nav > ul li > a:hover {
 }
 
 #catch .catch-column {
-  box-sizing: border-box;
-  padding: 4rem 3rem;
+  position: relative;
   display: inline-block;
   width: 33%;
   min-width: 300px;
@@ -119,4 +119,40 @@ nav > ul li > a:hover {
 #catch .catch-column i {
   margin-bottom: 1rem;
   font-size: 5rem;
+}
+#catch .catch-column a {
+  display: block;
+  box-sizing: border-box;
+  padding: 4rem 3rem;
+  width: 100%;
+  color: white;
+  text-decoration: none;
+}
+
+#catch .catch-column a::before, #catch .catch-column a::after {
+  content: "";
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 10px;
+  border: 1px solid black;
+  transition: all .1s linear;
+}
+#catch .catch-column a::before {
+  left: 100px;
+  border-right: 0;
+}
+#catch .catch-column a::after {
+  right: 100px;
+  border-left: 0;
+}
+#catch .catch-column:hover a::before {
+  border-color: white;
+  left: 0;
+}
+#catch .catch-column:hover a::after {
+  border-color: white;
+  right: 0;
 }
