@@ -8,26 +8,56 @@ html, body {
   background-color: #000;
 }
 
+a:link, a:visited, a:active {
+  color: red;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+blockquote {
+  position: relative;
+  margin: 1rem 2rem 1rem 3rem;
+  padding: 1rem 0;
+  font-style: italic;
+  font-size: 1.2rem;
+}
+blockquote::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -1.5rem;
+  width: 2px;
+  height: 100%;
+  background-color: white;
+}
+blockquote .attributor {
+  display: block;
+  margin-right: 2rem;
+  text-align: right;
+}
+
 .row {
+  box-sizing: border-box;
   width: 1000px;
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
+  padding: 0 10px;
 }
 
 /* HEADER */
 
-header {
+nav {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   background-color: rgba(0, 0, 0, .8);
-  z-index: 9999;
-}
-
-nav {
   height: 50px;
+  z-index: 9999;
 }
 
 nav > ul {
@@ -52,9 +82,11 @@ nav > ul li > a {
   padding: 5px 2rem;
   height: 100%;
   line-height: 40px;
+  transition: background-color .2s linear, color .2s linear;
+}
+nav > ul li > a:link, nav > ul li > a:visited, nav > ul li > a:active {
   color: white;
   text-decoration: none;
-  transition: background-color .2s linear, color .2s linear;
 }
 nav > ul li > a:hover {
   background-color: #eee;
@@ -65,7 +97,18 @@ nav > ul li > a:hover {
   font-weight: bold;
 }
 
+header .title {
+  margin-top: 120px;
+  color: white;
+  font-size: 92px;
+  font-family: "Times New Roman", serif;
+}
+
 /* MAIN */
+
+main {
+  color: white;
+}
 
 #pf-container {
   width: 100vw;
