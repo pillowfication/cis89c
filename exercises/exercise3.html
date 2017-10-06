@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <title>Exercise 3</title>
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+  <style>
+    body {background-color: #000; font-family: "Open Sans", sans-serif; color: #fff;}
+    #background {position: absolute; left: 0; top: 0; right: 0; bottom: 0; background-image: url("exercise3-assets/seoul.jpg"); background-position: center center; background-size: cover; background-attachment: fixed; opacity: .4; z-index: -1;}
+    h1 {text-align: center; font-size: 48px;}
+    table {border-collapse: collapse;}
+    table, th, td {border: 1px solid white; margin: 0 auto;}
+    thead {border-bottom: 2px solid white;}
+    tfoot {border-top: 2px solid white;}
+    th {padding: 1rem; font-size: 18px; font-weight: bold;}
+    td {padding: 1rem;}
+
+    tr {background-color: rgba(0,0,0,.3); transition: background-color .2s linear;}
+    tr:hover {background-color: rgba(255,255,255,.3);}
+  </style>
+  <script>
+    var budget = 1000
+    var total = 0
+    var USDtoKRW = 1143.33
+
+    var transportation = 40
+    total += transportation
+
+    var hotel = 20 * 7
+    total += hotel
+
+    var 이은주 = 274
+    total += 이은주
+
+    var food = 27
+    total += 27
+
+    var mugged = 50 * 3
+    total += mugged
+
+    var hospital = 80 * 2
+    total += hospital
+
+    var hitman = 198
+    total += hitman
+
+    var toiletPaper = 10
+    total += toiletPaper
+  </script>
+</head>
+
+<body>
+  <div id="background"></div>
+  <h1>My Trip to Korea!</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Expenses</th>
+        <th>KRW (₩)</th>
+        <th>USD ($)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Transportation</td>
+        <td><script>document.write(transportation * USDtoKRW)</script></td>
+        <td><script>document.write(transportation)</script></td>
+      </tr>
+      <tr>
+        <td>Hotel (x7)</td>
+        <td><script>document.write(hotel * USDtoKRW)</script></td>
+        <td><script>document.write(hotel)</script></td>
+      </tr>
+      <tr>
+        <td>이은주</td>
+        <td><script>document.write(이은주 * USDtoKRW)</script></td>
+        <td><script>document.write(이은주)</script></td>
+      </tr>
+      <tr>
+        <td>Food</td>
+        <td><script>document.write(food * USDtoKRW)</script></td>
+        <td><script>document.write(food)</script></td>
+      </tr>
+      <tr>
+        <td>Mugged (x3)</td>
+        <td><script>document.write(mugged * USDtoKRW)</script></td>
+        <td><script>document.write(mugged)</script></td>
+      </tr>
+      <tr>
+        <td>Hospital (x2)</td>
+        <td><script>document.write(hospital * USDtoKRW)</script></td>
+        <td><script>document.write(hospital)</script></td>
+      </tr>
+      <tr>
+        <td>Hitman</td>
+        <td><script>document.write(hitman * USDtoKRW)</script></td>
+        <td><script>document.write(hitman)</script></td>
+      </tr>
+      <tr>
+        <td>Toilet Paper</td>
+        <td><script>document.write(toiletPaper * USDtoKRW)</script></td>
+        <td><script>document.write(toiletPaper)</script></td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>Total Expenses</td>
+        <td><script>document.write(total * USDtoKRW)</script></td>
+        <td><script>document.write(total)</script></td>
+      </tr>
+      <tr>
+        <td>Balance</td>
+        <td><script>document.write((budget - total) * USDtoKRW)</script></td>
+        <td><script>document.write((budget - total))</script></td>
+      </tr>
+    </tfoot>
+  </table>
+</body>
+</html>
