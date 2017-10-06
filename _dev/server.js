@@ -5,6 +5,6 @@ const port = +process.argv[2] || 3000
 
 app.use(express.static(path.join(__dirname, '..')))
 
-app.listen(port, function () {
+app.listen(port, () => {
   console.log(`App started on port ${port}`)
 })

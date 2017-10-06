@@ -1,7 +1,7 @@
 {
   "name": "cis98c",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
     "express": "^4.16.1"
   }
 }
