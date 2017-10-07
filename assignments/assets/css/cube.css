@@ -1,0 +1,63 @@
+#cube-container {
+  position: relative;
+  height: 450px;
+  perspective: 700px;
+  perspective-origin: 50% 50%;
+  font-family: "Times New Roman", serif;
+}
+
+#cube {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  margin: -100px 0 0 -100px;
+  transform-style: preserve-3d;
+  animation-name: rotate-cube;
+  animation-duration: 15s;
+  animation-iteration-count: infinite;
+}
+
+#cube div {
+  box-sizing: border-box;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 1px solid white;
+  background-color: rgba(0, 0, 0, .6);
+  font-size: 140px;
+  line-height: 200px;
+  text-align: center;
+  animation-name: pulse-color;
+  animation-duration: 15s;
+  animation-iteration-count: infinite;
+}
+
+                     /* Push Face          Align Face       Orient Face      Sync Animation */
+#F /* 1 */ { transform: translateZ( 100px)                                 ;                         } /* 0 x 2.25 */
+#B /* 6 */ { transform: translateZ(-100px) rotateY( 180deg) rotateZ(180deg); animation-delay: 11.25s } /* 5 x 2.25 */
+#U /* 4 */ { transform: translateY(-100px) rotateX(  90deg) rotateZ(-90deg); animation-delay: 6.75s  } /* 3 x 2.25 */
+#D /* 5 */ { transform: translateY( 100px) rotateX( -90deg) rotateZ(-90deg); animation-delay: 9s     } /* 4 x 2.25 */
+#L /* 3 */ { transform: translateX(-100px) rotateY( -90deg)                ; animation-delay: 4.5s   } /* 2 x 2.25 */
+#R /* 2 */ { transform: translateX( 100px) rotateY(  90deg) rotateZ(-90deg); animation-delay: 2.25s  } /* 1 x 2.25 */
+
+@keyframes rotate-cube {
+  0%   /* F: 1 */ { transform: rotateX(   0deg) rotateY(   0deg) rotateZ(   0deg) }
+  10%  /* F: 1 */ { transform: rotateX(   0deg) rotateY(   0deg) rotateZ(   0deg) }
+  25%  /* R: 2 */ { transform: rotateX(  90deg) rotateY(   0deg) rotateZ(  90deg) }
+  40%  /* L: 3 */ { transform: rotateX( -90deg) rotateY(  90deg) rotateZ(  90deg) }
+  55%  /* U: 4 */ { transform: rotateX(   0deg) rotateY( 270deg) rotateZ(  90deg) }
+  70%  /* D: 5 */ { transform: rotateX(  90deg) rotateY(  90deg) rotateZ(   0deg) }
+  85%  /* B: 6 */ { transform: rotateX(   0deg) rotateY( 180deg) rotateZ(-180deg) }
+  100% /* F: 1 */ { transform: rotateX(   0deg) rotateY(   0deg) rotateZ(   0deg) }
+}
+
+@keyframes pulse-color {
+  0%   { color: white }
+  5%   { color: white } /* 5% transition */
+  10%  { color: gold  } /* 2% stay       */
+  12%  { color: gold  } /* 5% transition */
+  17%  { color: white }
+  100% { color: white }
+}
