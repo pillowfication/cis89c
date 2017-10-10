@@ -1,7 +1,14 @@
 {
   "name": "cis98c",
   "version": "0.0.0",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node_modules/standard/bin/cmd.js"
+  },
   "dependencies": {
     "express": "^4.16.1"
+  },
+  "devDependencies": {
+    "standard": "^10.0.3"
   }
 }
