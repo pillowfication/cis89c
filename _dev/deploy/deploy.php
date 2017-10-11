@@ -34,8 +34,15 @@ if (!isset($_SERVER["HTTP_X_HUB_SIGNATURE"])) {
 }
 
 // Pull the repo
-shell_exec(GIT . " pull");
-fwrite($log, "*** SUCCESS ***" . PHP_EOL);
+exec(GIT . " pull", $output, $exit);
+if ($exit == 0) {
+  fwrite($log, "*** SUCCESS ***" . PHP_EOL);
+  fwrite($log, $content . PHP_EOL . PHP_EOL);
+} else {
+  fwrite($log, "=== ERROR: Could not pull ===" . PHP_EOL);
+  fwrite($log, implode(PHP_EOL, $output) . PHP_EOL . PHP_EOL);
+}
+fclose($log);
 
 // Close connection
 ob_start();
@@ -45,6 +52,3 @@ header("Content-Length: " . ob_get_length());
 ob_end_flush();
 ob_flush();
 flush();
-
-fwrite($log, $content . PHP_EOL . PHP_EOL);
-fclose($log);
