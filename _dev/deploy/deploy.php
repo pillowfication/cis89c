@@ -34,7 +34,7 @@ if (!isset($_SERVER["HTTP_X_HUB_SIGNATURE"])) {
 }
 
 // Pull the repo
-exec(GIT . " pull", $output, $exit);
+exec(GIT . " pull 2>&1", $output, $exit);
 if ($exit == 0) {
   fwrite($log, "*** SUCCESS ***" . PHP_EOL);
   fwrite($log, $content . PHP_EOL . PHP_EOL);
