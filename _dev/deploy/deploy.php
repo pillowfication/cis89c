@@ -12,7 +12,7 @@ fwrite($log, date("d-m-Y (H:i:s)", time()) . PHP_EOL);
 
 // Forbid connection
 function deny($reason) {
-  fputs($log, "=== ERROR: " . $reason . " ===" . PHP_EOL . PHP_EOL);
+  fwrite($log, "=== ERROR: " . $reason . " ===" . PHP_EOL . PHP_EOL);
   fclose($log);
   header("HTTP/1.0 403 Forbidden");
   exit;
@@ -33,6 +33,10 @@ if (!isset($_SERVER["HTTP_X_HUB_SIGNATURE"])) {
   }
 }
 
+// Pull the repo
+shell_exec(GIT . " pull");
+fputs($file, "*** SUCCESS ***" . PHP_EOL);
+
 // Close connection
 ob_start();
 header("HTTP/1.1 200 OK");
@@ -42,5 +46,5 @@ ob_end_flush();
 ob_flush();
 flush();
 
-fputs($log, $content . PHP_EOL . PHP_EOL);
+fwrite($log, $content . PHP_EOL . PHP_EOL);
 fclose($log);
