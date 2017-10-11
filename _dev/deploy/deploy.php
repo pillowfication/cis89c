@@ -35,7 +35,7 @@ if (!isset($_SERVER["HTTP_X_HUB_SIGNATURE"])) {
 
 // Pull the repo
 shell_exec(GIT . " pull");
-fputs($file, "*** SUCCESS ***" . PHP_EOL);
+fwrite($log, "*** SUCCESS ***" . PHP_EOL);
 
 // Close connection
 ob_start();
