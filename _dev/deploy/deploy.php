@@ -1,97 +1,46 @@
 <?php
-// See https://github.com/vicenteguerra/git-deploy
 
-require_once("config.php");
+require_once "config.php";
+require "jsonwrapper/jsonwrapper.php"; // For PHP < 5.2.0
 
 $content = file_get_contents("php://input");
 $json    = json_decode($content, true);
-$file    = fopen(LOGFILE, "a");
-$time    = time();
-$token   = false;
+$log     = fopen("deploy.log", "a");
 
-// retrieve the token
-if (!$token && isset($_SERVER["HTTP_X_HUB_SIGNATURE"])) {
-    list($algo, $token) = explode("=", $_SERVER["HTTP_X_HUB_SIGNATURE"], 2) + array("", "");
-} elseif (isset($_SERVER["HTTP_X_GITLAB_TOKEN"])) {
-    $token = $_SERVER["HTTP_X_GITLAB_TOKEN"];
-} elseif (isset($_GET["token"])) {
-    $token = $_GET["token"];
-}
-
-// log the time
 date_default_timezone_set("UTC");
-fputs($file, date("d-m-Y (H:i:s)", $time) . "\n");
+fwrite($log, date("d-m-Y (H:i:s)", time()) . PHP_EOL);
 
-// function to forbid access
-function forbid($file, $reason) {
-    // explain why
-    if ($reason) fputs($file, "=== ERROR: " . $reason . " ===\n");
-    fputs($file, "*** ACCESS DENIED ***" . "\n\n\n");
-    fclose($file);
-
-    // forbid
-    header("HTTP/1.0 403 Forbidden");
-    exit;
+// Forbid connection
+function deny($reason) {
+  fputs($log, "=== ERROR: " . $reason . " ===" . PHP_EOL . PHP_EOL);
+  fclose($log);
+  header("HTTP/1.0 403 Forbidden");
+  exit;
 }
 
-// function to return OK
-function ok() {
-    ob_start();
-    header("HTTP/1.1 200 OK");
-    header("Connection: close");
-    header("Content-Length: " . ob_get_length());
-    ob_end_flush();
-    ob_flush();
-    flush();
-}
-
-// Check for a GitHub signature
-if (!empty(TOKEN) && isset($_SERVER["HTTP_X_HUB_SIGNATURE"]) && $token !== hash_hmac($algo, $content, TOKEN)) {
-    forbid($file, "X-Hub-Signature does not match TOKEN");
-// Check for a GitLab token
-} elseif (!empty(TOKEN) && isset($_SERVER["HTTP_X_GITLAB_TOKEN"]) && $token !== sha1(TOKEN)) {
-    forbid($file, "X-GitLab-Token does not match TOKEN");
-// Check for a $_GET token
-} elseif (!empty(TOKEN) && isset($_GET["token"]) && $token !== TOKEN) {
-    forbid($file, "\$_GET[\"token\"] does not match TOKEN");
-// if none of the above match, but a token exists, exit
-} elseif (!empty(TOKEN) && !isset($_SERVER["HTTP_X_HUB_SIGNATURE"]) && !isset($_SERVER["HTTP_X_GITLAB_TOKEN"]) && !isset($_GET["token"])) {
-    forbid($file, "No token detected");
+if (!isset($_SERVER["HTTP_X_HUB_SIGNATURE"])) {
+  deny("No token found");
 } else {
-    // check if pushed branch matches branch specified in config
-    if ($json["ref"] === BRANCH) {
-        fputs($file, $content . PHP_EOL);
+  // Check token
+  list($algo, $token) = explode("=", $_SERVER["HTTP_X_HUB_SIGNATURE"], 2);
+  if ($token !== hash_hmac($algo, $content, TOKEN)) {
+    deny("Token did not match");
+  }
 
-        // ensure directory is a repository
-        if (file_exists(DIR . ".git") && is_dir(DIR)) {
-            try {
-                // pull
-                chdir(DIR);
-                shell_exec(GIT . " pull");
-
-                // return OK to prevent timeouts on AFTER_PULL
-                ok();
-
-                // execute AFTER_PULL if specified
-                // if (!empty(AFTER_PULL)) {
-                //     try {
-                //         shell_exec(AFTER_PULL);
-                //     } catch (Exception $e) {
-                //         fputs($file, $e . "\n");
-                //     }
-                // }
-
-                fputs($file, "*** AUTO PULL SUCCESFUL ***" . "\n");
-            } catch (Exception $e) {
-                fputs($file, $e . "\n");
-            }
-        } else {
-            fputs($file, "=== ERROR: DIR is not a repository ===" . "\n");
-        }
-    } else {
-        fputs($file, "=== ERROR: Pushed branch does not match BRANCH ===\n");
-    }
+  // Check repo and branch
+  if ($json["repository"]["full_name"] !== REPO_NAME || $json["ref"] !== "refs/heads/" . REPO_BRANCH) {
+    deny("Repository " . $json["repository"]["full_name"] . "/" . $json["ref"] . " did not match");
+  }
 }
 
-fputs($file, "\n\n" . PHP_EOL);
-fclose($file);
+// Close connection
+ob_start();
+header("HTTP/1.1 200 OK");
+header("Connection: close");
+header("Content-Length: " . ob_get_length());
+ob_end_flush();
+ob_flush();
+flush();
+
+fputs($log, $content . PHP_EOL . PHP_EOL);
+fclose($log);
