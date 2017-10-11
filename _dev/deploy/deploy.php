@@ -28,8 +28,8 @@ if (!isset($_SERVER["HTTP_X_HUB_SIGNATURE"])) {
   }
 
   // Check repo and branch
-  if ($json["repository"]["full_name"] !== REPO_NAME || $json["ref"] !== "refs/heads/" . REPO_BRANCH) {
-    deny("Repository " . $json["repository"]["full_name"] . "/" . $json["ref"] . " did not match");
+  if ($json->repository->full_name !== REPO_NAME || $json->ref !== "refs/heads/" . REPO_BRANCH) {
+    deny("Repository " . $json->repository->full_name . "/" . $json->ref . " did not match");
   }
 }
 
