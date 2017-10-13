@@ -1,10 +1,10 @@
 <?php
 
 require_once "config.php";
-require "jsonwrapper/jsonwrapper.php"; // For PHP < 5.2.0
+require_once "jsonwrapper/jsonwrapper.php"; // For PHP < 5.2.0
 
 $content = file_get_contents("php://input");
-$json    = json_decode($content, true);
+$json    = json_decode($content);
 $log     = fopen("deploy.log", "a");
 
 date_default_timezone_set("UTC");
@@ -52,3 +52,4 @@ header("Content-Length: " . ob_get_length());
 ob_end_flush();
 ob_flush();
 flush();
+
