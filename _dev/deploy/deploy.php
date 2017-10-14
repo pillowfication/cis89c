@@ -34,7 +34,7 @@ if (!isset($_SERVER["HTTP_X_HUB_SIGNATURE"])) {
 }
 
 // Pull the repo
-exec("GIT_SSH=/home/student/20198403/public_html/_dev/deploy/ssh_wrap /usr/bin/git pull 2>&1", $output, $exit);
+exec("GIT_SSH=" . SSH_WRAP . " " . GIT . " pull 2>&1", $output, $exit);
 if ($exit == 0) {
   fwrite($log, "*** SUCCESS ***" . PHP_EOL);
   fwrite($log, $content . PHP_EOL . PHP_EOL);
@@ -52,4 +52,3 @@ header("Content-Length: " . ob_get_length());
 ob_end_flush();
 ob_flush();
 flush();
-

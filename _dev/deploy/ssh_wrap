@@ -1,2 +1,2 @@
 #!/bin/bash
-ssh -i /home/student/20198403/public_ssh/id_rsa -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" "$@"
+ssh -i /home/student/20198403/apache_ssh/id_rsa -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" "$@"
