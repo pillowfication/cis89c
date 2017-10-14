@@ -27,7 +27,7 @@ Head over to `_dev/deploy/ssh_wrap` and edit the file to use the SSH key you cre
 ssh -i /home/student/USERNAME/apache_ssh/id_rsa -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" "$@"
 ```
 
-Make sure user `apache` can execute this file (use `ls -l`) before you see
+Make sure user `apache` can execute this file (use `ls -l`). This may be a reoccurring issue since git kept changing this file's permissions on me. If user `apache` can't run it, you will see
 
 ```
 === ERROR: Could not pull ===
