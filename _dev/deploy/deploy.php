@@ -12,6 +12,7 @@ fwrite($log, date("d-m-Y (H:i:s)", time()) . PHP_EOL);
 
 // Forbid connection
 function deny($reason) {
+  // TODO: This part isn't writing to the log file for some reason
   fwrite($log, "=== ERROR: " . $reason . " ===" . PHP_EOL . PHP_EOL);
   fclose($log);
   header("HTTP/1.0 403 Forbidden");
