@@ -55,8 +55,8 @@ nano config.php
 | GIT         | Path to your git executable. Should be `/usr/bin/git`. |
 | SSH_WRAP    | Path to that `ssh_wrap` file. Should be `/home/student/username/public_html/_dev/deploy/ssh_wrap`. |
 | REPO_NAME   | The name of your repository in the form `username/repo`. |
-| REPO_BRANCH | The name of your branch in that repository. Only pushes to the branch specify will trigger deployment. |
-| LOGFILE     | Where to store log messages |
+| REPO_BRANCH | The name of your branch in that repository. Only pushes to the branch specified will trigger deployment. |
+| LOGFILE     | Where to store log messages. |
 
 Head over to your repository's Settings page and click the Webhooks tab  (https://github.com/username/repo/settings/hooks). Create a new Webhook with the following settings:
 
