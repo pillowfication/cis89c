@@ -2,6 +2,12 @@
 
 This website is hosted at http://voyager.deanza.edu/~20198403/.
 
+In this README, I've documented the steps I've taken to facilitate development.
+
+ - [Deploy with GitHub](#deploy-with-github)
+ - [Develop Locally](#develop-locally)
+ - [Setup Auto-deployment](#setup-auto-deployment)
+
 ## Deploy with GitHub
 
 First of all, you can SSH into your Voyager box with
@@ -57,6 +63,79 @@ Be aware that now your `.git` folder is made public. Add a `.htaccess` file at t
 RedirectMatch 404 /\.git
 ```
 
+## Develop Locally
+
+Ideally you shouldn't have to constantly push your files to the Voyager box in order to check if your code works. You need to start a web server on your own machine, develop there, then push when everything works. You can create an Apache server, but I really don't like Apache so I created a Node.js server instead. After all, this is a JavaScript course.
+
+First step is to install Node.js. For Windows, check out the `.msi` [here](https://nodejs.org/en/download/). For Mac/Linux, I used NVM instead.
+
+
+Install NVM
+
+```bash
+apt-get update
+apt-get install build-essential libssl-dev
+curl -sL https://raw.githubusercontent.com/creationix/nvm/master/install.sh -o nvm.sh
+bash nvm.sh
+rm nvm.sh
+
+# Append this to .bashrc
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+source ~/.nvm/nvm.sh
+
+# Append this to .profile
+source ~/.bashrc
+```
+
+Use NVM to install Node.js
+
+```bash
+nvm ls-remote
+nvm install <version>
+```
+
+Check that both `node` and `npm` are installed
+
+```bash
+node --version
+npm --version
+```
+
+Copy over the `_dev` folder onto your machine (in the root of your project folder; mine's at `~/ws/cis89c`). `_dev/deploy` contains the stuff for auto-deployment explained in the next section, and `_dev/local` contains the Node.js server we need. Go into the `_dev/local` folder and install all the necessary dependencies.
+
+```bash
+cd ~/ws/cis89c/_dev/local
+npm i
+```
+
+Run the `setup` script.
+
+```bash
+npm run setup
+```
+
+This will prompt for your Voyager username so that the website will be served at `/~username`. Next, start up the server.
+
+```bash
+npm start
+```
+
+Your website is now hosted at `localhost:3000/~username/`! To change the port, add an argument after `npm start`.
+
+```bash
+npm start 80
+```
+
+To stop the server, press `ctrl-c`. You can try using `pm2` to manage your server if you need to.
+
+```bash
+npm i -g pm2
+pm2 start ~/ws/cis89c/_dev/local/server.js --name voyager
+```
+
 ## Setup Auto-deployment
 
 **What I've done here isn't very good, but it's only for one quarter. Be warned. I really have no idea how Linux, Apache, PHP, and SSH work...**
@@ -71,7 +150,7 @@ Save this somewhere like `~/apache_ssh/id_rsa` and not the default `~/.ssh/id_rs
 
 Add the public key `~/apache_ssh/id_rsa.pub` to your GitHub SSH keys (https://github.com/settings/keys).
 
-Copy over the `_dev` folder onto your server (in `~/public_html`). This assumes that `~/public_html` is a git repository. `_dev/deploy` contains the stuff for auto-deployment, and `_dev/local` contains some Node.js stuff for local testing. You can ignore `_dev/local` for now, or just delete it if you want.
+Copy over the `_dev` folder onto your server (in `~/public_html`). This assumes that `~/public_html` is a git repository. `_dev/deploy` contains the stuff for auto-deployment, and `_dev/local` contains some Node.js stuff for local testing explained in the previous section.
 
 NOTE: This `_dev` folder may contain some information that should not be public. Only `_dev/deploy/deploy.php` will need to be accessible. Make sure your Apache and `.gitignore` stuff are configured appropriately.
 

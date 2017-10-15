@@ -2,6 +2,7 @@
   "name": "cis98c",
   "version": "0.0.0",
   "scripts": {
+    "setup": "node setup.js",
     "start": "node server.js",
     "test": "node_modules/standard/bin/cmd.js"
   },
@@ -9,6 +10,8 @@
     "express": "^4.16.1"
   },
   "devDependencies": {
+    "jsonfile": "^4.0.0",
+    "prompt": "^1.0.0",
     "standard": "^10.0.3"
   }
 }
