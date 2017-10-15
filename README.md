@@ -122,3 +122,14 @@ Head over to your repository's Settings page and click the Webhooks tab  (https:
  - Active: `yes`
 
 Everything should be set up now! Make sure your `git` working directory is clean and make a test push to the branch you specified in `~/public_html/_dev/deploy/config.php`. Hopefully everything runs smoothly, and your log file will say `SUCCESS` (and not `ERROR`).
+
+**Issues:**
+
+ - When the `deny()` function is called in `deploy.php`, the reason is mysteriously not logged.
+ - Sometimes when user `apache` executes the `git pull`, new or modified files will be created as read-only (`644`) and owned by `apache`. Subsequence pulls that try to modify those files again will lead to the following error
+
+```
+error: insufficient permission for adding an object to repository database .git/objects
+fatal: failed to write object
+fatal: unpack-objects failed
+```
