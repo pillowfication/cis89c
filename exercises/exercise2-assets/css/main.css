@@ -1,0 +1,71 @@
+body {
+  background-color: rgb(160, 160, 160);
+  background-image: url('../img/background.jpg');
+  background-size: cover;
+  background-position: center center;
+  font-family: "Open Sans", sans-serif;
+}
+
+#padder {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 1000px;
+  padding: 100px;
+}
+#centerer {
+  width: 1000px;
+  height: 800px;
+  margin: 0 auto;
+  overflow: visible;
+  perspective: 2000px;
+}
+
+.card {
+  position: absolute;
+  width: 500px;
+  height: 800px;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  transition: transform .5s linear;
+}
+.card.left {
+  padding-right: 500px;
+  background-image: url('../img/paper-left.jpg');
+  background-position: left center;
+}
+.card.right {
+  padding-left: 500px;
+  background-image: url('../img/paper-right.jpg');
+  background-position: right center;
+}
+
+#cover {
+  transform: rotateY(0deg);
+  transition-delay: .5s;
+}
+#centerer:hover #cover {
+  transform: rotateY(-90deg);
+  transition-delay: 0s;
+}
+#side1 {
+  transform: rotateY(90deg);
+  transition-delay: 0s;
+}
+#centerer:hover #side1 {
+  transform: rotateY(0deg);
+  transition-delay: .5s;
+}
+
+#cover-text {
+  margin-top: 250px;
+  font-size: 24px;
+  text-align: center;
+}
+#inside-recipient {
+  box-sizing: border-box;
+  position: absolute;
+  right: 0;
+  bottom: 120px;
+  width: 50%;
+  font-size: 124px;
+}
