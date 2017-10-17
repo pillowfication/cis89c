@@ -7,7 +7,7 @@ $content = file_get_contents("php://input");
 $json    = json_decode($content);
 $log     = fopen("deploy.log", "a");
 
-date_default_timezone_set("UTC");
+date_default_timezone_set("America/Los_Angeles");
 fwrite($log, date("d-m-Y (H:i:s)", time()) . PHP_EOL);
 
 // Forbid connection
@@ -24,7 +24,7 @@ if (!isset($_SERVER["HTTP_X_HUB_SIGNATURE"])) {
 } else {
   // Check token
   list($algo, $token) = explode("=", $_SERVER["HTTP_X_HUB_SIGNATURE"], 2);
-  if ($token !== hash_hmac($algo, $content, TOKEN)) {
+  if ($token !== hash_hmac($algo, $content, SECRET)) {
     deny("Token did not match");
   }
 
