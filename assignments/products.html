@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <title>Pillowfication | Products</title>
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+  <link rel="stylesheet" type="text/css" href="/~20198403/assignments/main.css" />
+  <script>
+    function PillowProduct (image, description) {
+      this.image = image
+      this.description = description
+
+      this.displayInfo = function displayInfo () {
+        document.writeln(
+          '<div class="center"><figure>' +
+            '<img src="assets/img/' + this.image + '" height="400px" />' +
+            '<figcaption>' + this.description + '</figcaption>' +
+          '</figure></div>'
+        )
+      }
+    }
+
+    function createZoey () {
+      var zoey = new PillowProduct('pf-zoey.jpg', 'The character Zoey from the game Left4Dead')
+      zoey.displayInfo()
+    }
+
+    function createDVa () {
+      var dva = new PillowProduct('pf-dva.jpg', 'The character D.Va from the game Overwatch')
+      dva.displayInfo()
+    }
+
+    function selectProduct() {
+      var firstName = window.prompt('Welcome to the products page!\n\nPlease enter your first name:')
+      var lastName = window.prompt('Now please enter your last name:')
+      firstName = firstName + ' ' + lastName
+
+      var selection = window.prompt(
+        'Hello, ' + firstName + '!\n\n' +
+        'Please enter the number of which product you would like to see:\n' +
+        '    1. Zoey\n' +
+        '    2. D.Va\n'
+      )
+
+      if (selection === '1') {
+        createZoey()
+      } else if (selection === '2') {
+        createDVa()
+      } else {
+        document.writeln('Sorry, item <span style="font-family: monospace">' + selection + '</span> was not found :(')
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <ul class="row">
+        <li><a href="/~20198403/assignments/index.html">Pillowfication</a></li>
+        <li><a href="/~20198403/assignments/why.html">Why</a></li>
+        <li><a href="/~20198403/assignments/about.html">About</a></li>
+        <li><a href="/~20198403/assignments/misc.html">Misc</a></li>
+      </ul>
+    </nav>
+
+    <div class="title row">
+      Products
+      <hr />
+    </div>
+  </header>
+
+  <main>
+    <section class="row">
+      <script>selectProduct()</script>
+    </section>
+  </main>
+
+  <footer>
+    <!-- Just for padding right now -->
+  </footer>
+</body>
+</html>
