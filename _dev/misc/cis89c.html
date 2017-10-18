@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CIS89C | Student Websites</title>
+  <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation-float.min.css" />
+  <style>
+    body {
+      padding-top: 3rem;
+      padding-bottom: 8rem;
+    }
+    table {
+      width: initial;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script type="text/babel">
+    class Student {
+      constructor (username, name) {
+        this.username = username
+        this.name = name
+      }
+    }
+
+    const students = [
+      new Student('20198403', 'Tran, Markus'),
+      new Student('adiamtesfay', 'Gebremichael, Adiam'),
+      new Student('alexanderduong', 'Duong, Alexander'),
+      new Student('cherrykrngirl', 'Namkung, Ashley'),
+      new Student('gpernov', 'Pernov, George'),
+      new Student('hsuwk7', 'Hsu, Kairan'),
+      new Student('jimhar66', 'Harrison, James'),
+      new Student('joycetsanwang', 'Sze, Joyce Tsan Tsan Wang'),
+      new Student('kai', 'Limani, Korab'),
+      new Student('karendeanza', 'Huang, Juan'),
+      new Student('karenkam', 'Jin, Yilun'),
+      new Student('lucyli', 'Li, Lucy'),
+      new Student('maimai', 'Yam, Mamie'),
+  /**/new Student('muffin', 'Chen, Michael'),
+      new Student('nthaker', 'Thaker, Neelam'),
+      new Student('paigeprager', 'Prager, Paige'),
+      new Student('pslak1', 'Sharma, Praveen'),
+      new Student('rishika', 'Dall, Rishika'),
+  /**/new Student('robdlc', 'De La Cruz, Robert'),
+      new Student('shuyin', 'Le, John'),
+      new Student('tequsia', 'Sklarek, Malgorzata Katarzyna'),
+      new Student('teriilynne', 'Navarro, Teri'),
+  /**/new Student('tichmarie', 'Jones, Leticia'),
+      new Student('tinwin', 'Nguyen, Thien'),
+      new Student('trinity', 'Dickinson, Friend'),
+      new Student('yasserkhan', 'Khan, Yasser'),
+      new Student('yukuiwasaki', 'Iwasaki, Yuku')
+    ]
+
+    class StudentComponent extends React.Component {
+      render() {
+        const { student } = this.props
+        return (
+          <tr>
+            <td>{student.name}</td>
+            <td><a href={`http://voyager.deanza.edu/~${student.username}/`}>~{student.username}</a></td>
+          </tr>
+        )
+      }
+    }
+
+    class App extends React.Component {
+      render() {
+        return (
+          <main className='row'>
+            <div className='small-12 column'>
+              <h1>CIS89C - Student Websites</h1>
+              <hr />
+              <table className='students'>
+                <thead>
+                  <tr>
+                    <th>Student</th>
+                    <th>Website</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {students
+                    .sort((a, b) => a.name.localeCompare(b.name))
+                    .map(student =>
+                      <StudentComponent key={student.username} student={student} />
+                    )}
+                </tbody>
+              </table>
+            </div>
+          </main>
+        )
+      }
+    }
+
+    ReactDOM.render(<App />, document.getElementById('app'))
+  </script>
+</body>
+</html>

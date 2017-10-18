@@ -1,0 +1,8 @@
+{
+  "name": "cis98c",
+  "version": "0.0.0",
+  "dependencies": {
+    "async": "^2.5.0",
+    "request": "^2.83.0"
+  }
+}
