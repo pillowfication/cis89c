@@ -159,6 +159,8 @@ pm2 start ~/ws/cis89c/_dev/local/server.js --name voyager
 
 **What I've done here isn't very good, but it's only for one quarter. Be warned. I really have no idea how Linux, Apache, PHP, and SSH work...**
 
+**WARNING: Never mind don't use this. It keeps creating read-only files owned by `apache` and I can't get rid of them anymore. This even applies to some files in `.git` which totally messes everything up. I just renamed `~/public_html` to `~/public_trash` and recloned everything.**
+
 This assumes that `~/public_html` is a git repository. The idea is that every time you `git push` your code, a GitHub Webhook will send a little message to a deploy script on the Voygaer server. This deploy script will simply execute `git pull`, and thus your website is magically updated.
 
 Create another SSH key on the Voyager box for user `apache` to use to execute the `git pull`s.
