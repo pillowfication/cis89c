@@ -4,30 +4,8 @@
   <meta charset="utf-8" />
   <title>Exercise 4</title>
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans" />
-  <style>
-    body {background-color: #cef; font-family: "Open Sans", sans-serif;}
-    em   {margin: 0 .5rem; font-style: normal; font-size: 2rem; font-weight: bold;}
-    .row {box-sizing: border-box; width: 800px; max-width: 100%; margin: 0 auto; padding: 1rem;}
-
-    #car-animation {position: fixed; left: 0; bottom: 0; right: 0; height: 450px; background: linear-gradient(to bottom, #cef, #acd);}
-    #clouds        {position: absolute; left: 0; top: 0; right: 0; height: 250px; background-image: url("exercise4-assets/img/clouds.png"); background-position: 0px center; background-repeat: repeat-x; animation: 12s scroll-clouds infinite linear;}
-    #road          {position: absolute; left: 0; bottom: 0; right: 0; height: 50px; background-color: #777; background-image: url("exercise4-assets/img/divider.png"); background-position: 0px center; background-repeat: repeat-x; animation: .8s scroll-divider infinite linear;}
-    #car           {position: absolute; left: 20px; top: 225px; height: 200px; animation-name: nudge-car; animation-duration: .6s; animation-iteration-count: infinite;}
-
-    @keyframes nudge-car {
-      0%   {top: 225px;}
-      49%  {top: 225px;}
-      50%  {top: 220px;}
-      99%  {top: 220px;}
-      100% {top: 225px;}
-    }
-    @keyframes scroll-clouds {
-      100% {background-position: -750px center;}
-    }
-    @keyframes scroll-divider {
-      100% {background-position: -200px center;}
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+  <link rel="stylesheet" type="text/css" href="exercise4-assets/css/main.css" />
   <script>
     function calculateMileage (milesDriven, gallonsUsed) {
       var mileage = milesDriven / gallonsUsed
