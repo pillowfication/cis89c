@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <title>Exercise 6</title>
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,800" />
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+  <link rel="stylesheet" type="text/css" href="exercise6-assets/css/main.css" />
+  <script>
+    function Movie (genre, title, rating, price) {
+      this.genre = genre
+      this.title = title
+      this.rating = rating
+      this.price = price
+
+      this.displayInfo = function displayInfo () {
+        document.writeln(
+          '<div class="movie">' +
+            '<div class="title">' + this.title + '</div>' +
+            '<div class="genre">' + this.genre + '</div>' +
+            '<div class="rating">' + this.rating + '</div>' +
+            '<div class="price">' + this.price + '</div>' +
+          '</div>'
+        )
+      }
+    }
+
+    // Helper functions to display the movies properly
+    function signStart () {
+      document.writeln('<div id="sign-container"><div id="sign">')
+    }
+    function signEnd () {
+      document.writeln('</div></div>')
+    }
+
+    // Initialize the array of movies
+    var movies = new Array()
+    movies.push(new Movie('Thriller', 'The Handmaiden', 8.3, 9.99))
+    movies.push(new Movie('Monster', 'The Host', 7.7, 8.99))
+    movies.push(new Movie('Mystery', 'Oldboy', 7.3, 12.49))
+  </script>
+</head>
+
+<body>
+  <h1>MOVIES INVENTORY</h1>
+  <script>
+    // Number of movies in the inventory: 3
+    // Display the movies
+    document.writeln('<p>Number of movies in the inventory: ' + movies.length + '</p>')
+
+    signStart()
+      movies.forEach(function (movie) {
+        movie.displayInfo()
+      })
+    signEnd()
+
+    // Pop and display the popped movie.
+    document.writeln('<p>Pop and display the popped movie.</p>')
+    var popped1 = movies.pop()
+
+    signStart()
+      popped1.displayInfo()
+    signEnd()
+
+    // Number of movies in the inventory: 2
+    // Pop another one and display the popped movie.
+    document.writeln('<p>Number of movies in the inventory: ' + movies.length + '</p>')
+    document.writeln('<p>Pop another one and display the popped movie.</p>')
+    var popped2 = movies.pop()
+
+    signStart()
+      popped2.displayInfo()
+    signEnd()
+
+    // Number of movies in the inventory: 1
+    // Unshift the last popped movie and display the inventory.
+    document.writeln('<p>Number of movies in the inventory: ' + movies.length + '</p>')
+    document.writeln('<p>Unshift the last popped movie and display the inventory.</p>')
+    movies.unshift(popped2)
+
+    signStart()
+      movies.forEach(function (movie) {
+        movie.displayInfo()
+      })
+    signEnd()
+
+    // Do another pop and display the popped movie.
+    document.writeln('<p>Do another pop and display the popped movie.</p>')
+    var popped3 = movies.pop()
+
+    signStart()
+      popped3.displayInfo()
+    signEnd()
+
+    // Number of movies in the inventory: 1
+    // Display the inventory.
+    document.writeln('<p>Number of movies in the inventory: ' + movies.length + '</p>')
+    document.writeln('<p>Display the inventory.</p>')
+
+    signStart()
+      movies.forEach(function (movie) {
+        movie.displayInfo()
+      })
+    signEnd()
+
+    // Push the first popped and display the inventory.
+    document.writeln('<p>Push the first popped and display the inventory.</p>')
+    movies.push(popped1)
+
+    signStart()
+      movies.forEach(function (movie) {
+        movie.displayInfo()
+      })
+    signEnd()
+
+    // Number of movies in the inventory: 2
+    // Shift and display the shifted movie.
+    document.writeln('<p>Number of movies in the inventory: ' + movies.length + '</p>')
+    document.writeln('<p>Shift and display the shifted movie.</p>')
+    var shifted = movies.shift()
+
+    signStart()
+      shifted.displayInfo()
+    signEnd()
+
+    // Number of movies in the inventory: 1
+    // Display the inventory.
+    document.writeln('<p>Number of movies in the inventory: ' + movies.length + '</p>')
+    document.writeln('<p>Display the inventory.</p>')
+
+    signStart()
+      movies.forEach(function (movie) {
+        movie.displayInfo()
+      })
+    signEnd()
+  </script>
+</body>
+</html>
