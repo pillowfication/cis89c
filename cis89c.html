@@ -11,9 +11,6 @@
       padding-top: 3rem;
       padding-bottom: 8rem;
     }
-    table {
-      width: initial;
-    }
   </style>
 </head>
 
@@ -24,6 +21,7 @@
       constructor (username, name) {
         this.username = username
         this.name = name
+        this.url = `http://voyager.deanza.edu/~${username}/`
       }
     }
 
@@ -57,13 +55,28 @@
       new Student('yukuiwasaki', 'Iwasaki, Yuku')
     ]
 
+    const added = [
+      'Chen, Michael',
+      'De La Cruz, Robert',
+      'Jones, Leticia'
+    ]
+    const removed = [
+      'Ghimire, Avi',
+      'Gvatua, Maria',
+      'Haas, Alexander',
+      'Markov, Plamen Vassilev',
+      'Orunbaev, Bekten',
+      'Rodriguez, Herson',
+      'Wong, Michael'
+    ]
+
     class StudentComponent extends React.Component {
       render() {
-        const { student } = this.props
+        const { name, url } = this.props.student
         return (
           <tr>
-            <td>{student.name}</td>
-            <td><a href={`http://voyager.deanza.edu/~${student.username}/`}>~{student.username}</a></td>
+            <td>{name}</td>
+            <td><a href={url}>{url}</a></td>
           </tr>
         )
       }
@@ -91,6 +104,30 @@
                     )}
                 </tbody>
               </table>
+            </div>
+            <hr />
+            <div className='small-12 column'>
+              <p>This page is intended to be an updated version of <a href="https://deanza.instructure.com/courses/2627/file_contents/course%20files/websites.html?canvas_download=1">the one found on Canvas</a>.</p>
+            </div>
+            <div className='small-6 column'>
+              <h5>Added</h5>
+              <ul>
+                {added
+                  .sort()
+                  .map(student =>
+                    <li key={student}>{student}</li>
+                  )}
+              </ul>
+            </div>
+            <div className='small-6 column'>
+              <h5>Removed</h5>
+              <ul>
+                {removed
+                  .sort()
+                  .map(student =>
+                    <li key={student}>{student}</li>
+                  )}
+              </ul>
             </div>
           </main>
         )
