@@ -1,0 +1,46 @@
+{
+  "name": "cis89c",
+  "version": "0.0.0",
+  "description": "cis89c",
+  "author": {
+    "name": "Markus Tran",
+    "email": "thebluepillow@gmail.com",
+    "url": "http://pillowfication.com"
+  },
+  "homepage": "https://github.com/pillowfication/cis89c",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pillowfication/cis89c.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pillowfication/cis89c/issues"
+  },
+  "main": "index.js",
+  "scripts": {
+    "build": "node_modules/webpack/bin/webpack.js --env=dev --watch --progress --colors",
+    "build:prod": "node_modules/webpack/bin/webpack.js --env=prod --progress",
+    "test": "node_modules/standard/bin/cmd.js"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.4.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.0",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "file-loader": "^0.11.1",
+    "font-awesome": "^4.7.0",
+    "import-glob-loader": "^1.1.0",
+    "node-sass": "^4.5.2",
+    "normalize.css": "^7.0.0",
+    "prop-types": "^15.5.8",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-router-dom": "^4.1.1",
+    "sass-loader": "^6.0.3",
+    "standard": "^10.0.3",
+    "style-loader": "^0.16.1",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.4.1"
+  }
+}
