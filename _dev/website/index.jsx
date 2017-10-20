@@ -2,16 +2,14 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Route } from 'react-router-dom'
 
-import './css/main.scss'
+import './assets/css/main.scss'
 
-import HelloWorld from './components/HelloWorld.jsx'
+import FrontPage from './components/FrontPage.jsx'
 
 class App extends Component {
   render () {
     return (
-      <div id='app'>
-        <HelloWorld />
-      </div>
+      <FrontPage />
     )
   }
 }
@@ -20,5 +18,5 @@ ReactDOM.render(
   <BrowserRouter>
     <Route path='/' component={App} />
   </BrowserRouter>,
-  document.getElementById('app-container')
+  document.getElementById('app')
 )

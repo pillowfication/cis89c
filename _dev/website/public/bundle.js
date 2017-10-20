@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/public";
+/******/ 	__webpack_require__.p = "/~20198403/_dev/website/public";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 106);
@@ -11684,30 +11684,44 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var HelloWorld = function (_Component) {
-  _inherits(HelloWorld, _Component);
+var FrontPage = function (_Component) {
+  _inherits(FrontPage, _Component);
 
-  function HelloWorld() {
-    _classCallCheck(this, HelloWorld);
+  function FrontPage() {
+    _classCallCheck(this, FrontPage);
 
-    return _possibleConstructorReturn(this, (HelloWorld.__proto__ || Object.getPrototypeOf(HelloWorld)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (FrontPage.__proto__ || Object.getPrototypeOf(FrontPage)).apply(this, arguments));
   }
 
-  _createClass(HelloWorld, [{
+  _createClass(FrontPage, [{
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        'p',
-        { id: 'hello' },
-        'Hello, World!'
+        'div',
+        { id: 'fp' },
+        _react2.default.createElement(
+          'h1',
+          null,
+          'CIS89C | Markus Tran'
+        ),
+        _react2.default.createElement(
+          'div',
+          { id: 'assignments' },
+          'Assignments'
+        ),
+        _react2.default.createElement(
+          'div',
+          { id: 'exercises' },
+          'Exercises'
+        )
       );
     }
   }]);
 
-  return HelloWorld;
+  return FrontPage;
 }(_react.Component);
 
-exports.default = HelloWorld;
+exports.default = FrontPage;
 
 /***/ }),
 /* 103 */
@@ -11825,9 +11839,9 @@ var _reactRouterDom = __webpack_require__(104);
 
 __webpack_require__(105);
 
-var _HelloWorld = __webpack_require__(102);
+var _FrontPage = __webpack_require__(102);
 
-var _HelloWorld2 = _interopRequireDefault(_HelloWorld);
+var _FrontPage2 = _interopRequireDefault(_FrontPage);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -11849,11 +11863,7 @@ var App = function (_Component) {
   _createClass(App, [{
     key: 'render',
     value: function render() {
-      return _react2.default.createElement(
-        'div',
-        { id: 'app' },
-        _react2.default.createElement(_HelloWorld2.default, null)
-      );
+      return _react2.default.createElement(_FrontPage2.default, null);
     }
   }]);
 
@@ -11864,7 +11874,7 @@ _reactDom2.default.render(_react2.default.createElement(
   _reactRouterDom.BrowserRouter,
   null,
   _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: App })
-), document.getElementById('app-container'));
+), document.getElementById('app'));
 
 /***/ }),
 /* 107 */
