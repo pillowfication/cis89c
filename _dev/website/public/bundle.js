@@ -11676,6 +11676,10 @@ var _react = __webpack_require__(8);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _classnames = __webpack_require__(248);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -11708,45 +11712,50 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var FrontPage = function (_Component) {
   _inherits(FrontPage, _Component);
 
-  function FrontPage() {
+  function FrontPage(props) {
     _classCallCheck(this, FrontPage);
 
-    return _possibleConstructorReturn(this, (FrontPage.__proto__ || Object.getPrototypeOf(FrontPage)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (FrontPage.__proto__ || Object.getPrototypeOf(FrontPage)).call(this, props));
+
+    _this.state = {
+      transition: null
+    };
+    return _this;
   }
+  //
+  // componentDidMount () {
+  //   this.idCounter = 0
+  //   this.interval = setInterval(this.generateBlock.bind(this), 20)
+  // }
+  // componentWillUnmount () {
+  //   clearInterval(this.interval)
+  // }
+  //
+  // generateBlock () {
+  //   this.setState({
+  //     blocks: [ ...this.state.blocks, this.idCounter++ ]
+  //   })
+  // }
+  // destroyBlock (id) {
+  //   this.state.blocks.splice(this.state.blocks.indexOf(id), 1)
+  // }
 
   _createClass(FrontPage, [{
+    key: 'transitionRight',
+    value: function transitionRight() {
+      this.setState({ transition: 'right' });
+    }
+  }, {
+    key: 'transitionLeft',
+    value: function transitionLeft() {
+      this.setState({ transition: 'left' });
+    }
+  }, {
     key: 'render',
-
-    // constructor (props) {
-    //   super(props)
-    //   this.state = {
-    //     idCounter: 0,
-    //     blocks: []
-    //   }
-    // }
-    //
-    // componentDidMount () {
-    //   this.idCounter = 0
-    //   this.interval = setInterval(this.generateBlock.bind(this), 20)
-    // }
-    // componentWillUnmount () {
-    //   clearInterval(this.interval)
-    // }
-    //
-    // generateBlock () {
-    //   this.setState({
-    //     blocks: [ ...this.state.blocks, this.idCounter++ ]
-    //   })
-    // }
-    // destroyBlock (id) {
-    //   this.state.blocks.splice(this.state.blocks.indexOf(id), 1)
-    // }
-
     value: function render() {
-      // const destroyBlock = this.destroyBlock.bind(this)
       return _react2.default.createElement(
         'div',
-        { id: 'fp' },
+        { id: 'fp', className: (0, _classnames2.default)(this.state.transition && 'fp-transition fp-' + this.state.transition) },
         _react2.default.createElement(
           'div',
           { id: 'fp-head' },
@@ -11766,12 +11775,12 @@ var FrontPage = function (_Component) {
           { id: 'fp-body' },
           _react2.default.createElement(
             'div',
-            { className: 'floaty-thing' },
+            { className: 'floaty-thing fp-left', onClick: this.transitionLeft.bind(this) },
             'Assignments'
           ),
           _react2.default.createElement(
             'div',
-            { className: 'floaty-thing' },
+            { className: 'floaty-thing fp-right', onClick: this.transitionRight.bind(this) },
             'Exercises'
           )
         )
@@ -27636,6 +27645,74 @@ module.exports = function poof() {
       }
     }, true);
   });
+})();
+
+/***/ }),
+/* 247 */
+/***/ (function(module, exports) {
+
+/* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {/* globals __webpack_amd_options__ */
+module.exports = __webpack_amd_options__;
+
+/* WEBPACK VAR INJECTION */}.call(exports, {}))
+
+/***/ }),
+/* 248 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+/*!
+  Copyright (c) 2016 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+
+	function classNames() {
+		var classes = [];
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg === 'undefined' ? 'undefined' : _typeof(arg);
+
+			if (argType === 'string' || argType === 'number') {
+				classes.push(arg);
+			} else if (Array.isArray(arg)) {
+				classes.push(classNames.apply(null, arg));
+			} else if (argType === 'object') {
+				for (var key in arg) {
+					if (hasOwn.call(arg, key) && arg[key]) {
+						classes.push(key);
+					}
+				}
+			}
+		}
+
+		return classes.join(' ');
+	}
+
+	if (typeof module !== 'undefined' && module.exports) {
+		module.exports = classNames;
+	} else if ("function" === 'function' && _typeof(__webpack_require__(247)) === 'object' && __webpack_require__(247)) {
+		// register as 'classnames', consistent with npm package name
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
+			return classNames;
+		}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else {
+		window.classNames = classNames;
+	}
 })();
 
 /***/ })

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import classNames from 'classnames'
 
 // class Block extends Component {
 //   componentWillMount () {
@@ -22,13 +23,12 @@ import React, { Component } from 'react'
 // }
 
 export default class FrontPage extends Component {
-  // constructor (props) {
-  //   super(props)
-  //   this.state = {
-  //     idCounter: 0,
-  //     blocks: []
-  //   }
-  // }
+  constructor (props) {
+    super(props)
+    this.state = {
+      transition: null
+    }
+  }
   //
   // componentDidMount () {
   //   this.idCounter = 0
@@ -47,10 +47,16 @@ export default class FrontPage extends Component {
   //   this.state.blocks.splice(this.state.blocks.indexOf(id), 1)
   // }
 
+  transitionRight () {
+    this.setState({ transition: 'right' })
+  }
+  transitionLeft () {
+    this.setState({ transition: 'left' })
+  }
+
   render () {
-    // const destroyBlock = this.destroyBlock.bind(this)
     return (
-      <div id='fp'>
+      <div id='fp' className={classNames(this.state.transition && `fp-transition fp-${this.state.transition}`)}>
         <div id='fp-head'>
           <div id='class'>CIS89C</div>
           <div id='name'>Markus Tran</div>
@@ -63,8 +69,8 @@ export default class FrontPage extends Component {
             //   )}
             // </div>
           }
-          <div className='floaty-thing'>Assignments</div>
-          <div className='floaty-thing'>Exercises</div>
+          <div className='floaty-thing fp-left' onClick={this.transitionLeft.bind(this)}>Assignments</div>
+          <div className='floaty-thing fp-right' onClick={this.transitionRight.bind(this)}>Exercises</div>
         </div>
       </div>
     )

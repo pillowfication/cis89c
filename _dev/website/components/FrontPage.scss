@@ -9,6 +9,7 @@
     flex: 1; // fill remaining height
     position: relative;
     background-image: linear-gradient(to top, #aaa, #fff);
+    overflow: hidden;
 
     @include breakpoint(small down) {
       background-image: linear-gradient(to right, #aaa, #fff);
@@ -66,5 +67,32 @@
       font-size: 2.5rem;
       background-color: rgba(255, 255, 255, 0);
     }
+  }
+}
+
+#fp.fp-transition {
+  .floaty-thing {
+    background-color: rgba(255, 255, 255, 1);
+    font-size: 2rem;
+    transition-property: width, background-color, color;
+    transition-duration: 1s;
+  }
+
+  &.fp-left .floaty-thing.fp-left {
+    font-size: 2.5rem;
+    width: 100%;
+  }
+  &.fp-left .floaty-thing.fp-right {
+    width: 0%;
+    color: white;
+  }
+
+  &.fp-right .floaty-thing.fp-right {
+    font-size: 2.5rem;
+    width: 100%;
+  }
+  &.fp-right .floaty-thing.fp-left {
+    width: 0%;
+    color: white;
   }
 }
