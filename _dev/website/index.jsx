@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter, Route } from 'react-router-dom'
 
 import './assets/css/main.scss'
+import './node_modules/pf-konami'
 
 import FrontPage from './components/FrontPage.jsx'
 
