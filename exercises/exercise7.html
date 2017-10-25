@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <title>Exercise 7</title>
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,800" />
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+  <link rel="stylesheet" type="text/css" href="exercise7-assets/css/main.css" />
+  <script>
+    function Movie (genre, title, rating, price) {
+      this.genre = genre
+      this.title = title
+      this.rating = rating
+      this.price = price
+
+      this.displayInfo = function displayInfo () {
+        document.writeln(
+          '<div class="movie">' +
+            '<div class="title">' + this.title + '</div>' +
+            '<div class="genre">' + this.genre + '</div>' +
+            '<div class="rating">' + this.rating + '</div>' +
+            '<div class="price">' + this.price + '</div>' +
+          '</div>'
+        )
+      }
+    }
+
+    // Initialize the genres
+    var action = new Array()
+    var musical = new Array()
+    var comedy = new Array()
+
+    // Populate each genre
+    action.push(new Movie('Action', 'Raiders of the Lost Ark', '9.4', 11.49))
+    action.push(new Movie('Action', 'Aliens', '9.8', 13.49))
+    action.push(new Movie('Action', 'Die Hard', '9.2', 12.49))
+    action.push(new Movie('Action', 'Terminator 2: Judgment Day', '9.3', 12.99))
+    action.push(new Movie('Action', 'Con Air', '5.6', 11.49))
+
+    musical.push(new Movie('Musical', 'Top Hat', '10.0', 11.99))
+    musical.push(new Movie('Musical', 'On the Town', '9.6', 12.49))
+    musical.push(new Movie('Musical', 'The Sound of Music', '8.6', 12.49))
+    musical.push(new Movie('Musical', 'Grease', '7.5', 11.99))
+    musical.push(new Movie('Musical', 'Evita', '6.2', 11.99))
+
+    comedy.push(new Movie('Comedy', 'Monkey Business', '8.8', 13.49))
+    comedy.push(new Movie('Comedy', 'Bringing Up Baby', '9.5', 12.99))
+    comedy.push(new Movie('Comedy', 'The Pink Panther', '9.0', 12.99))
+    comedy.push(new Movie('Comedy', 'Airplane!', '9.7', 12.99))
+    comedy.push(new Movie('Comedy', 'The Full Monty', '9.5', 13.49))
+
+    // Aggregate everything
+    var movies = new Array()
+    movies.push(action)
+    movies.push(musical)
+    movies.push(comedy)
+    console.log(movies)
+  </script>
+</head>
+
+<body>
+  <h1>MOVIES INVENTORY</h1>
+  <script>
+    document.writeln('<p>Number of genres in the inventory: ' + movies.length + '</p>')
+
+    document.writeln('<table>')
+      // Write the table head
+      document.writeln(
+        '<thead>' +
+          '<tr>' +
+            '<th>Action</th>' +
+            '<th>Musical</th>' +
+            '<th>Comedy</th>' +
+          '</tr>' +
+        '</thead>'
+      )
+      // Write the table body
+      document.writeln('<tbody>')
+        for (var row = 0; row < movies[0].length; ++row) {
+          document.writeln('<tr>')
+          for (var col = 0; col < movies.length; ++col) {
+            document.writeln('<td>')
+            movies[col][row].displayInfo()
+            document.writeln('</td>')
+          }
+          document.writeln('</tr>')
+        }
+      document.writeln('</tbody>')
+    document.writeln('</table>')
+  </script>
+
+  <div style="height:200px"></div>
+</body>
+</html>
