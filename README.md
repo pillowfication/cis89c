@@ -23,6 +23,8 @@ and you can leave with
 exit
 ```
 
+(If you leave your connection on and it "freezes", type `[Enter]~.` to quit.)
+
 To remove the need for a password, generate some SSH keys.
 
 ```bash
@@ -40,7 +42,7 @@ ssh-keygen -t rsa -b 4096 -C "email@website.com"
 ssh-copy-id username@voyager.deanza.edu
 ```
 
-Try SSH'ing into your Voyager box again.
+Try SSH'ing into your Voyager box again. There should be no password prompt anymore.
 
 Create another SSH key on your Voyager box. This will be used to execute `git` commands (`git` comes installed). To add the key on GitHub, copy the public key `~/.ssh/id_rsa.pub` to your [GitHub SSH keys](https://github.com/settings/keys).
 
@@ -123,20 +125,20 @@ node --version
 npm --version
 ```
 
-Copy over the `_dev` folder onto your machine (in the root of your project folder; mine's at `~/ws/cis89c`). `_dev/deploy` contains the stuff for auto-deployment explained in the next section, and `_dev/local` contains the Node.js server we need. Go into the `_dev/local` folder and install all the necessary dependencies.
+Copy over the `_dev` folder onto your machine (in the root of your project folder; mine's at `~/ws/cis89c`). `_dev/deploy` contains the stuff for auto-deployment explained in the next section, and `_dev/local` contains the Node.js server we need. The other folders in `_dev` you can ignore. Go into the `_dev/local` folder and install all the necessary dependencies.
 
 ```bash
 cd ~/ws/cis89c/_dev/local
 npm i
 ```
 
-Run the `setup` script.
+Run the `setup` script that I've created at `_dev/local/setup.js`.
 
 ```bash
 npm run setup
 ```
 
-This will prompt for your Voyager username so that the website will be served at `/~username`. Next, start up the server.
+This will prompt for your Voyager username so that the website will be served at `/~username`. (Serving at `/~username` instead of `/` is to more closely imitate your Voyager website and to make sure that all your root-relative URLs are correct). Next, start up the server (which is the `_dev/local/server.js` script).
 
 ```bash
 npm start
@@ -173,11 +175,11 @@ Save this somewhere like `~/apache_ssh/id_rsa` and not the default `~/.ssh/id_rs
 
 Add the public key `~/apache_ssh/id_rsa.pub` to your [GitHub SSH keys](https://github.com/settings/keys).
 
-Copy over the `_dev` folder onto your server (in `~/public_html` if you didn't already from the previous section). `_dev/deploy` contains the stuff for auto-deployment, and `_dev/local` contains some Node.js stuff for local testing explained in the previous section.
+Copy over the `_dev` folder onto your server (in `~/public_html` if you didn't already from the previous section). `_dev/deploy` contains the stuff for auto-deployment, and `_dev/local` contains some Node.js stuff for local testing explained in the previous section. The other folders are irrelevant.
 
 NOTE: This `_dev` folder may contain some information that should not be public. Only `_dev/deploy/deploy.php` will need to be accessible. Make sure your Apache and `.gitignore` stuff are configured appropriately.
 
-Head over to `_dev/deploy/ssh_wrap` and edit the file to use the SSH key you created for user `apache`. It should look like
+Head over to `_dev/deploy/ssh_wrap` and edit the file to use the SSH key you created for user `apache` (just change the `username` from mine to yours). It should look like
 
 ```bash
 #!/bin/bash
@@ -217,7 +219,7 @@ nano config.php
 
 Head over to your repository's Settings page and click the Webhooks tab  (https://github.com/username/repo/settings/hooks). Create a new Webhook with the following settings:
 
- - Payload URL: `http://voyager.deanza.edu/~username/_dev/deploy/deploy.php` (make sure this points to your `~/_dev/deploy/deploy.php` file)
+ - Payload URL: `http://voyager.deanza.edu/~username/_dev/deploy/deploy.php` (make sure this points to your `~/public_html/_dev/deploy/deploy.php` file)
  - Content type: `application/json`
  - Secret: (enter the same secret your created earlier in `~/public_html/_dev/deploy/config.php`)
  - Which events would you like to trigger this webhook?: `Just the push event.`
