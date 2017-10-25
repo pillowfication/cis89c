@@ -1,3 +1,3 @@
 # \_dev/local
 
-Code for enabling auto-deployment. See [Setup Auto-deployment](../../#setup-auto-deployment).
+Code for enabling local development. See [Develop Locally](https://github.com/pillowfication/cis89c/#develop-locally).
