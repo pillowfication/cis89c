@@ -38,6 +38,22 @@ figure img {
   margin-bottom: 1rem;
 }
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: black;
+}
+th, td {
+  border: 1px solid white;
+  padding: .5rem;
+}
+th {
+  font-weight: bold;
+}
+tbody tr:nth-of-type(odd) {
+  background-color: #222;
+}
+
 .row {
   box-sizing: border-box;
   width: 1000px;

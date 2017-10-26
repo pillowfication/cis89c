@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <title>Pillowfication | Catalog</title>
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+  <link rel="stylesheet" type="text/css" href="/~20198403/assignments/main.css" />
+  <link rel="stylesheet" type="text/css" href="/~20198403/assignments/assets/css/catalog.css" />
+  <script>
+    function Pillow (type, shape, fluffiness, quantity, price) {
+      this.type = type
+      this.shape = shape
+      this.fluffiness = fluffiness
+      this.quantity = quantity
+      this.price = price
+    }
+
+    // Create bed pillows
+    var bed = new Array()
+    bed.push(new Pillow('Bed', 'Standard (20"×26")', .70, 761, 12.99))
+    bed.push(new Pillow('Bed', 'Square (26"×26")', .75, 264, 16.99))
+    bed.push(new Pillow('Bed', 'Queen (20"×30")', .83, 97, 19.99))
+    bed.push(new Pillow('Bed', 'King (20"×36")', .94, 143, 37.99))
+    bed.push(new Pillow('Bed', 'Continental (32"×32")', .92, 23, 39.99))
+
+    // Create orthopedic pillows
+    var orthopedic = new Array()
+    orthopedic.push(new Pillow('Orthopedic', 'Travel', .52, 322, 12.99))
+    orthopedic.push(new Pillow('Orthopedic', 'Donut', .60, 178, 12.99))
+    orthopedic.push(new Pillow('Orthopedic', 'Lumbar', .45, 228, 12.99))
+
+    // Create decorative pillows
+    var decorative = new Array()
+    decorative.push(new Pillow('Decorative', 'Banana', .25, 62, 15.99))
+    decorative.push(new Pillow('Decorative', 'Rock', .10, 26, 9.99))
+    decorative.push(new Pillow('Decorative', 'Poop', .25, 87, 12.99))
+    decorative.push(new Pillow('Decorative', 'Fish', .25, 27, 18.99))
+    decorative.push(new Pillow('Decorative', 'Pickle', .25, 39, 13.99))
+    decorative.push(new Pillow('Decorative', 'Human', .99, 0, 99.99))
+
+    // Aggregate everything
+    var pillows = new Array()
+    pillows.push(bed)
+    pillows.push(orthopedic)
+    pillows.push(decorative)
+  </script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <ul class="row">
+        <li><a href="/~20198403/assignments/index.html">Pillowfication</a></li>
+        <li><a href="/~20198403/assignments/why.html">Why</a></li>
+        <li><a href="/~20198403/assignments/about.html">About</a></li>
+        <li><a href="/~20198403/assignments/misc.html">Misc</a></li>
+      </ul>
+    </nav>
+
+    <div class="title row">
+      Catalog
+      <hr />
+    </div>
+  </header>
+
+  <main>
+    <section class="row">
+      <script>
+        document.writeln('<table>')
+          // Write the table head
+          document.writeln(
+            '<thead>' +
+              '<tr>' +
+                '<th>Type</th>' +
+                '<th>Shape</th>' +
+                '<th>Fluffiness</th>' +
+                '<th>Quantity</th>' +
+                '<th>Price</th>' +
+              '</tr>' +
+            '</thead>'
+          )
+          // Write the table body
+          document.writeln('<tbody>')
+            for (var type = 0; type < pillows.length; ++type) {
+              for (var index = 0; index < pillows[type].length; ++index) {
+                var item = pillows[type][index]
+                document.writeln('<tr>')
+                  // The first row has an extra <td> that shows the type
+                  if (index === 0) {
+                    document.writeln('<td class="type" rowspan="' + pillows[type].length + '">' + item.type + '</td>')
+                  }
+                  document.writeln('<td><div class="shape">' + item.shape + '</div></td>')
+                  document.writeln('<td><div class="fluffiness">' + (item.fluffiness * 100 + '%') + '</div></td>')
+                  document.writeln('<td><div class="quantity">' + item.quantity + '</div></td>')
+                  document.writeln('<td><div class="price">' + ('$' + item.price) + '</div></td>')
+                document.writeln('</tr>')
+              }
+            }
+          document.writeln('</tbody>')
+        document.writeln('</table>')
+      </script>
+    </section>
+  </main>
+
+  <footer>
+    <!-- Just for padding right now -->
+  </footer>
+</body>
+</html>
