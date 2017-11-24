@@ -2,6 +2,8 @@
 
 This website is hosted at http://voyager.deanza.edu/~20198403/.
 
+The above link will not work after 2017, so I'm also hosting it at http://pf-n.co/github/cis89c/.
+
 In this README, I've documented the steps I've taken to facilitate development.
 
  - [Deploy with GitHub](#deploy-with-github)

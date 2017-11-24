@@ -1,0 +1,25 @@
+{
+  "name": "cis89c",
+  "version": "0.0.0",
+  "description": "JS stuff",
+  "author": {
+    "name": "Markus Tran",
+    "email": "thebluepillow@gmail.com",
+    "url": "http://pillowfication.com"
+  },
+  "homepage": "https://github.com/pillowfication/cis89c",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pillowfication/cis89c.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pillowfication/cis89c/issues"
+  },
+  "main": "_dev/local/server.js",
+  "scripts": {
+    "test": "node_modules/standard/bin/cmd.js"
+  },
+  "devDependencies": {
+    "standard": "^10.0.3"
+  }
+}
